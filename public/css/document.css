@@ -1,0 +1,763 @@
+
+/* 
+    Created on : 13 Nov 2024, 9:44:29 pm
+    Author     : Dell
+*/
+
+/* General Layout */
+.main-container {
+    display: flex;
+    max-width: 2000px;
+    height: 100vh;
+    margin: 0;
+    overflow-x: auto; /* Allow horizontal scrolling for the whole container */
+}
+
+/* Adjust Main Content */
+.main-content {
+    width: calc(100% - 250px); /* Ensure it doesn't overlap with the sidebar */
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* Expand to fill remaining space */
+    transition: margin-left 0.7s ease;
+    overflow-y: auto;
+}
+
+/* Adjust content margin when sidebar is collapsed */
+.main-content.sidebar-collapsed {
+    margin-left: 50px; /* Align with collapsed sidebar */
+}
+
+/* Preventing other parts of the page from restricting the table */
+body {
+    overflow-x: auto;
+}
+
+/* Navigation Bar */
+.navigation {
+    top: 0;
+    left: 250px; /* Align to the right of the sidebar */
+    right: 0;
+    height: 60px;
+    background-color: var(--lightgray);
+    display: flex;
+    align-items: center;
+    z-index: 1000;
+    transition: left 0.3s ease;
+}
+
+.navigation.sidebar-collapsed {
+    left: 60px;
+}
+
+h1 {
+    font-size: 21px;
+    color: #333;
+}
+
+h3{
+    font-size: 18px;
+}
+
+/* Page Content with Scrolling */
+.content {
+    padding: 20px;
+    max-height: calc(100vh - 60px);
+    background-color: #ffffff;
+    padding-bottom: 100px;
+    overflow-y: auto;
+}
+
+.documents{
+    width: 90%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.title{
+    padding: 10px 20px;
+}
+
+/* Container for the gallery */
+.gallery {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+
+/* File icon */
+.file-icon img {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    background-color: #ffffff;
+}
+
+/* File info (title and version) */
+.file-info {
+    margin-top: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* File title */
+.file-title {
+    font-size: 14px;
+    color: #333;
+}
+
+/* Version tag */
+.file-version {
+    background-color: #f1f1f1;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 12px;
+    color: #777;
+}
+
+/* Search Bar Styling */
+.search-bar {
+    margin: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.search-bar input[type="text"] {
+    width: 100%;
+    max-width: 300px;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    outline: none;
+}
+
+.search-bar input[type="text"]:focus {
+    border-color: #0056b3;
+}
+
+/* Style for the file count text */
+.file-count {
+    margin: 0 20px;
+    font-size: 13px;
+    color: #555;
+}
+
+
+/* Filter icon on the right side */
+.filter-icon {
+    cursor: pointer;
+    padding: 5px;
+    align-self: center;
+}
+
+
+
+.icon-buttons {
+    display: flex;
+    gap: 5px;
+}
+
+.icon-buttons .icon {
+    padding: 8px;
+    border-radius: 5px;
+    background-color: #e6e6e6;
+    cursor: pointer;
+}
+/* Upload Document Button Container */
+.upload-btn-container {
+    margin: 10px 20px;
+}
+
+/* Styling for Upload Document Button */
+.upload-btn {
+    padding: 10px 10px;
+    font-size: 14px;
+    background-color: #4d78e8;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+/* Hover Effect for Button */
+.upload-btn:hover {
+    background-color: #3b63cd;
+}
+
+/* Hide file input */
+#fileInput {
+    display: none;
+}
+
+/* Overlay for background transparency */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Half-transparent */
+    display: none;
+    z-index: 1000; /* Ensure it appears above other content */
+}
+
+
+/* Modal Styling */
+.file-info-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    display: none;
+    z-index: 1000;
+    max-width: 450px;
+    width: 100%;
+}
+
+/* Modal Header */
+.modalTitle {
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: #333;
+    font-weight: 600;
+}
+
+/* Input Group Styles */
+.input-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.input-group label {
+    font-size: 14px;
+    color: #555;
+    margin-right: 10px;
+    width: 120px;
+    min-width: 120px;
+}
+
+.input-group input[type="file"] {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    flex: 1;
+    height: 36px;
+    width: 30px;
+}
+
+.input-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    height: 100px;
+    resize: vertical;
+}
+
+/* File Info - Align Span elements */
+.input-group .file-info {
+    font-size: 14px;
+    color: #333;
+    margin-left: 10px;
+    word-wrap: break-word;
+    flex: 1;
+}
+
+/* Modal Buttons */
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.no-documents {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.no-documents img.empty-folder {
+    width: 200px;
+    height: auto;
+    opacity: 0.7;
+}
+
+.no-documents p {
+    font-size: 16px;
+    color: #777;
+    margin-top: 10px;
+    padding-bottom: 30px;
+}
+
+
+
+
+.document-viewer {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 1200px;
+    height: 80%;
+    background: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.viewer-container {
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+.viewer-content {
+    flex: 1; /* Take up remaining space */
+    overflow: hidden; /* Prevent content from spilling out */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.viewer-details{
+    padding: 30px 15px;
+    border-left: 1px solid #cbcbcb;
+}
+
+#imageViewer {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+#pdfViewer {
+    width: 100%;
+    height: 100%; /* Adjust height to container */
+    border: none;
+}
+
+#textViewer {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    padding: 10px 20px;
+    background-color: #f4f4f4;
+}
+
+.close-btn {
+    margin-top: 20px;
+    padding: 10px;
+    background: red;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.close-btn:hover {
+    background-color: #970505;
+}
+
+/* Container for document details */
+.document-details {
+    margin-top: 20px;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.document-details h3 {
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: #4d78e8;
+}
+
+.document-details table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.document-details td {
+    padding-bottom: 15px;
+    text-align: left;
+    font-size: 14px;
+}
+
+
+.document-details strong {
+    padding-right: 15px;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.file-type-container {
+    display: flex;
+    align-items: center;  
+}
+
+#docType {
+    margin-left: 8px;  
+}
+
+
+
+/* Button styling for closing the document viewer */
+.close-btn {
+    padding: 8px 16px;
+    background-color: #dd5555;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 15px;
+}
+
+button#downloadBtn{
+    padding: 8px 16px;
+    background-color: #4d78e8;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 15px;
+}
+
+.close-btn:hover {
+    background-color: #dd5566;
+}
+
+/* Gallery file items - improved alignment */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.file-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.file-item:hover {
+    transform: scale(1.05);
+}
+
+.file-icon {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+}
+
+.file-info {
+    font-size: 14px;
+    text-align: center;
+}
+
+.file-title {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.file-description {
+    color: #777;
+}
+
+/* Adjusted styling for the search bar */
+.search-bar {
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.filter-icon {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.filter-icon-img {
+    width: 20px;
+    height: 20px;
+    margin-left: 300px;
+}
+
+/* Modal styles */
+.file-info-modal {
+    max-width: 450px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    font-size: 14px;
+    color: #555;
+    margin-right: 10px;
+    width: 120px;
+    min-width: 120px;
+}
+
+.input-group input,
+.input-group textarea {
+    width: calc(100% - 140px);
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+
+#noResultsMessage{
+    font-size: 15px;
+    color: #c51818;
+}
+
+.file-item.checked {
+    border: 2px solid red;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+}
+
+.file-checkbox {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+}
+
+.file-checkbox input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+/* Delete button styling */
+.delete-btn {
+    padding: 8px 16px;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-left: 10px;
+}
+
+.delete-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.project-top{
+    padding: 0px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    gap: 10px;
+}
+
+.project-top:hover{
+    background-color: #efefef;
+    border-radius: 10px;
+}
+
+.project-top.active{
+    background-color: #d0ebff;
+    border-radius: 10px;
+}
+
+.project-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+}
+
+.project-header h1 {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 24px;
+}
+
+.toggle-info-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.project-info-panel {
+    position: absolute;
+    top: 135px;
+    left: 280px;
+    width: 420px;
+    background: white;
+    border: 1px solid #ddd;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    border-radius: 10px;
+    z-index: 100;
+    font-size: 14px;
+}
+
+.project-info-panel h2 {
+    margin: 0 0 10px 0;
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+}
+
+.project-description, .project-address {
+    margin-bottom: 10px;
+}
+
+.project-description p, .project-address p {
+    margin: 0;
+    line-height: 1.4;
+}
+
+.project-info-table {
+    width: 100%;
+    font-size: 14px;
+    border-collapse: collapse;
+}
+
+.project-info-table td {
+    padding: 8px 0px;
+    vertical-align: middle;
+}
+
+.user-cell {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.user-avatar {
+    width: 27px;
+    height: 27px;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Status Badge Styles */
+.status-badge {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 12px;
+    text-transform: uppercase;
+    display: inline-block;
+}
+
+.status-badge.active {
+    background-color: #0cac36;
+    color: #ffffff;
+    border: 1px solid #09aa2e;
+
+}
+
+.status-badge.completed {
+    background-color: #1856d4;
+    color: #ffffff;
+    border: 1px solid #d6d8db;
+}
+
+.status-badge.pending {
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeeba;
+}
+
+.fa-calendar {
+    margin-right: 5px;
+    color: #007bff;
+}
+
+.editable-field {
+    width: auto !important;
+    font-size: 14px !important;
+    font-weight: normal !important;
+    border: 1px solid #d1cfcf !important;
+    background: transparent !important;
+    outline: none !important;
+    padding: 2px !important;
+    border-radius: 5px !important;
+}
+
+.edit-info-btn{
+    width: 19%;
+    background-color: #9bb5f9;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    color: #0c1655;
+}
+
+input#addressText.editable-field {
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important; /* Ensure padding doesn't shrink the width */
+    padding: 4px !important;
+}
+
+
+
+input#projectNameText.editable-field{
+    font-size: 18px !important;
+    font-weight: bold !important;
+}
+

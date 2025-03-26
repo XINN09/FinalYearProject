@@ -1,0 +1,262 @@
+
+/* 
+    Created on : 12 Nov 2024, 9:30:43 pm
+    Author     : Dell
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+}
+
+.form-container {
+    width: 58%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-left: 6%;
+}
+
+.form-container h1{
+    font-size: 35px;
+    margin-bottom: 20px;
+    font-family: Optima, sans-serif;
+}
+
+.form-container h2{
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-family: Optima, sans-serif;
+}
+
+form{
+    width: 480px;
+}
+
+.logo {
+    height: 3rem;
+    width: 3.4rem;
+    margin: 10px;
+}
+
+/* Scrollable box for form fields */
+.scroll-box {
+    max-height: 200px;
+    overflow-y: auto;
+    width: 100%;
+
+}
+
+.scroll-box h4 {
+    margin: 10px 0 5px;
+    font-size: 16px;
+    font-family: sans-serif;
+    font-weight: normal;
+    color: #2f2f2f;
+}
+
+.form-field h4{
+    margin: 10px 0 5px;
+    font-size: 16px;
+    font-family: sans-serif;
+    font-weight: normal;
+    color: #2f2f2f;
+}
+
+input[type="email"], input[type="password"], input[type="text"], input[type="number"] {
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    height: 50px;
+    font-size: 1em;
+    max-width: 430px;
+}
+
+.continue {
+    background-color: #4475ce;
+    padding: 10px;
+    border: none;
+    color: white;
+    border-radius: 3px;
+    cursor: pointer;
+    width: 100%;
+    max-width: 430px;
+    height: 50px;
+    margin: 30px 0;
+    font-size: 1em;
+}
+
+.continue2 {
+    background-color: #4475ce;
+    padding: 10px;
+    border: none;
+    color: white;
+    border-radius: 3px;
+    cursor: pointer;
+    width: 100%;
+    max-width: 120px;
+    height: 50px;
+    margin: 30px 0;
+    font-size: 1em;
+    float: right;
+    margin-right: 30px;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 60px;  /* Add spacing between the buttons */
+}
+
+.back-button {
+    background-color: white;
+    padding: 10px;
+    border: 1px solid #4475ce;
+    color: #4475ce;
+    border-radius: 3px;
+    cursor: pointer;
+    width: 100%;
+    max-width: 430px;
+    height: 50px;
+    margin: 30px 0;
+    font-size: 1em;
+    text-align: center;
+    align-content: center;
+    text-decoration: none;
+}
+
+
+.terms {
+    font-size: 14px;
+    color: #666;
+    padding: 0px 20% 10px 0;
+    align-self: center;
+    margin-right: 10%;
+    text-align: center;
+}
+
+.terms a {
+    color: #10559e;
+    text-decoration: none;
+}
+
+.terms a:hover {
+    color: #10559e;
+    text-decoration: underline;
+}
+/* Right Side - Image Styling */
+.image-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 50%;
+    height: 100vh;
+}
+
+.image-container img {
+    max-width: 100%;
+    height: 100%;
+}
+
+.radio-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.radio-buttons label {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    color: #2f2f2f;
+    font-family: sans-serif;
+    cursor: pointer;
+    border: 1px solid #c2c1c1;
+    border-radius: 25px;
+    padding: 12px 14px;
+    letter-spacing: 0.7px;
+}
+
+.radio-buttons input[type="radio"] {
+    margin-right: 10px;
+    accent-color: #4e85eb;
+}
+
+.error-message {
+    color: red;
+    font-size: 15px;
+    margin-top: 5px;
+}
+
+.register{
+    background-color: #4475ce;
+    padding: 10px;
+    border: none;
+    color: white;
+    border-radius: 3px;
+    cursor: pointer;
+    width: 100%;
+    max-width: 430px;
+    height: 50px;
+    margin: 30px 0;
+    font-size: 1em;
+}
+
+.password-note {
+    font-size: 14px;
+    color: #002c80;
+    margin-top: 10px;
+    padding: 15px;
+    background-color: #e0edff;
+    border: 1px solid #0d5dd5;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 430px;
+}
+
+.password-note ul {
+    margin: 5px 0 0 20px;
+    padding-left: 10px; /* Add some padding to align text properly */
+}
+
+.password-note li {
+    list-style-type: disc;
+    margin-bottom: 5px; /* Add spacing between list items */
+}
+
+.format-note {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #ecf0f8;
+    border: 1px solid #3774cd;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #555;
+    width: 430px;
+}
+
+.format-note p {
+    margin: 5px 0;
+}
+
+.format-note ul {
+    margin: 5px 0 10px 20px;
+}
+
+.format-note code {
+    background-color: #f1f1f1;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-family: monospace;
+}

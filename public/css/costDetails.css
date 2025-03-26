@@ -1,0 +1,368 @@
+
+/* 
+    Created on : 4 Mar 2025, 10:12:21 pm
+    Author     : Dell
+*/
+
+/* General Layout */
+.main-container {
+    display: flex;
+    max-width: 2000px;
+    height: 100vh;
+    margin: 0;
+    overflow-x: auto; /* Allow horizontal scrolling for the whole container */
+}
+
+/* Adjust Main Content */
+.main-content {
+    width: calc(100% - 250px); /* Ensure it doesn't overlap with the sidebar */
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* Expand to fill remaining space */
+    transition: margin-left 0.7s ease;
+    overflow-y: auto;
+}
+
+/* Adjust content margin when sidebar is collapsed */
+.main-content.sidebar-collapsed {
+    margin-left: 50px; /* Align with collapsed sidebar */
+}
+
+/* Navigation Bar */
+.navigation {
+    top: 0;
+    left: 250px; /* Align to the right of the sidebar */
+    right: 0;
+    height: 60px;
+    background-color: var(--lightgray);
+    display: flex;
+    align-items: center;
+    z-index: 1000;
+    transition: left 0.3s ease;
+}
+
+.navigation.sidebar-collapsed {
+    left: 60px;
+}
+
+h1 {
+    font-size: 21px;
+    color: #333;
+}
+
+h3{
+    font-size: 18px;
+}
+
+/* Page Content with Scrolling */
+.content {
+    padding: 20px;
+    max-height: calc(100vh - 60px);
+    background-color: #ffffff;
+    padding-bottom: 100px;
+    overflow-y: auto;
+}
+
+/* Back arrow */
+.back-arrow {
+    text-decoration: none;
+    font-weight: bold;
+    color: #3f51b5;
+    font-size: 20px;
+}
+
+/* Document Container */
+.documents {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    padding: 15px 20px;
+}
+
+/* Title Section */
+.title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* Search Input */
+#searchTask {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    width: 200px;
+}
+
+/* Table Styling */
+.cost-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.cost-table th {
+    background-color: #ebebeb;
+    color: #333;
+    padding: 12px;
+    font-weight: bold;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.cost-table td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #f0f0f0;
+    background-color: #fff; 
+    width: 14%;
+}
+
+/* Light gray on hover (only if NOT editing) */
+.task-row:hover {
+    background-color: #f0f0f0;
+}
+
+/* Background when row is editing */
+tr.task-row.editing {
+    background-color: #E5E5FF !important;
+}
+
+/* Optional: slightly bold the text when editing */
+input.edit-mode {
+    font-weight: bold;
+    width: 70%;
+}
+
+/* Buttons */
+.edit-btn, .save-btn {
+    padding: 5px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.edit-btn {
+    background-color: #89A2FF;
+    color: white;
+}
+
+.save-btn {
+    background-color: #4caf50;
+    color: white;
+    display: none;
+}
+
+.edit-btn:hover {
+    background-color: #303f9f;
+}
+
+.save-btn:hover {
+    background-color: #388e3c;
+}
+
+/* Footer Total Row */
+.foot{
+    background-color: #f0f0f0;
+    font-weight: bold;
+}
+
+tfoot td {
+    padding: 10px;
+    text-align: right;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .main-content {
+        width: 100%;
+    }
+    #searchTask {
+        width: 100%;
+    }
+    .cost-table th, .cost-table td {
+        font-size: 12px;
+        padding: 8px;
+    }
+}
+.project-top{
+    padding: 0px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    gap: 10px;
+}
+
+.project-top:hover{
+    background-color: #efefef;
+    border-radius: 10px;
+}
+
+.project-top.active{
+    background-color: #d0ebff;
+    border-radius: 10px;
+}
+
+.project-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+}
+
+.project-header h1 {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 24px;
+}
+
+.toggle-info-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.project-info-panel {
+    position: absolute;
+    top: 135px;
+    left: 280px;
+    width: 420px;
+    background: white;
+    border: 1px solid #ddd;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    border-radius: 10px;
+    z-index: 100;
+    font-size: 14px;
+}
+
+.project-info-panel h2 {
+    margin: 0 0 10px 0;
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+}
+
+.project-description, .project-address {
+    margin-bottom: 10px;
+}
+
+.project-description p, .project-address p {
+    margin: 0;
+    line-height: 1.4;
+}
+
+.project-info-table {
+    width: 100%;
+    font-size: 14px;
+    border-collapse: collapse;
+}
+
+.project-info-table td {
+    padding: 8px 0px;
+    vertical-align: middle;
+}
+
+.user-cell {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.user-avatar {
+    width: 27px;
+    height: 27px;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Status Badge Styles */
+.status-badge {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 12px;
+    text-transform: uppercase;
+    display: inline-block;
+}
+
+.status-badge.active {
+    background-color: #0cac36;
+    color: #ffffff;
+    border: 1px solid #09aa2e;
+
+}
+
+.status-badge.completed {
+    background-color: #1856d4;
+    color: #ffffff;
+    border: 1px solid #d6d8db;
+}
+
+.status-badge.pending {
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeeba;
+}
+
+.fa-calendar {
+    margin-right: 5px;
+    color: #007bff;
+}
+
+.editable-field {
+    width: auto !important;
+    font-size: 14px !important;
+    font-weight: normal !important;
+    border: 1px solid #d1cfcf !important;
+    background: transparent !important;
+    outline: none !important;
+    padding: 2px !important;
+    border-radius: 5px !important;
+}
+
+.edit-info-btn{
+    width: 19%;
+    background-color: #9bb5f9;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    color: #0c1655;
+}
+
+input#addressText.editable-field {
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important; /* Ensure padding doesn't shrink the width */
+    padding: 4px !important;
+}
+
+
+
+input#projectNameText.editable-field{
+    font-size: 18px !important;
+    font-weight: bold !important;
+}
+

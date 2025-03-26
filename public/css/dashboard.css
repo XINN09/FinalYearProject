@@ -1,0 +1,1211 @@
+/* 
+    Created on : 10 Nov 2024, 4:34:38 pm
+    Author     : Dell
+*/
+
+/* General Layout */
+.main-container {
+    display: flex;
+    max-width: 2000px;
+    height: 100vh;
+    margin: 0;
+    overflow-x: auto; /* Allow horizontal scrolling for the whole container */
+}
+
+/* Adjust Main Content */
+.main-content {
+    width: calc(100% - 250px); /* Ensure it doesn't overlap with the sidebar */
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* Expand to fill remaining space */
+    transition: margin-left 0.7s ease;
+    overflow-y: auto;
+}
+
+/* Adjust content margin when sidebar is collapsed */
+.main-content.sidebar-collapsed {
+    margin-left: 50px; /* Align with collapsed sidebar */
+}
+
+/* Preventing other parts of the page from restricting the table */
+body {
+    overflow-x: auto;
+}
+
+
+
+/* Navigation Bar */
+.navigation {
+    top: 0;
+    left: 250px; /* Align to the right of the sidebar */
+    right: 0;
+    height: 60px;
+    background-color: var(--lightgray);
+    display: flex;
+    align-items: center;
+    z-index: 1000;
+    transition: left 0.3s ease;
+}
+
+.navigation.sidebar-collapsed {
+    left: 60px;
+}
+
+/* Page Content with Scrolling */
+.content {
+    padding: 20px;
+    overflow-y: auto;
+    max-height: calc(100vh - 60px);
+    background-color: white;
+    padding-bottom: 100px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h1 {
+    font-size: 21px;
+    color: #333;
+    display: flex;
+    gap: 10px;
+}
+
+.project-top{
+    padding: 0px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    gap: 10px;
+}
+
+.project-top:hover{
+    background-color: #efefef;
+    border-radius: 10px;
+}
+
+.project-top.active{
+    background-color: #d0ebff;
+    border-radius: 10px;
+}
+
+.project-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+}
+
+.project-header h1 {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 24px;
+}
+
+.toggle-info-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.project-info-panel {
+    position: absolute;
+    top: 135px;
+    left: 280px;
+    width: 420px;
+    background: white;
+    border: 1px solid #ddd;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    border-radius: 10px;
+    z-index: 100;
+    font-size: 14px;
+}
+
+.project-info-panel h2 {
+    margin: 0 0 10px 0;
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+}
+
+.project-description, .project-address {
+    margin-bottom: 10px;
+}
+
+.project-description p, .project-address p {
+    margin: 0;
+    line-height: 1.4;
+}
+
+.project-info-table {
+    width: 100%;
+    font-size: 14px;
+    border-collapse: collapse;
+}
+
+.project-info-table td {
+    padding: 8px 0px;
+    vertical-align: middle;
+}
+
+.user-cell {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.user-avatar {
+    width: 27px;
+    height: 27px;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Status Badge Styles */
+.status-badge {
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 12px;
+    text-transform: uppercase;
+    display: inline-block;
+}
+
+.status-badge.active {
+    background-color: #0cac36;
+    color: #ffffff;
+    border: 1px solid #09aa2e;
+
+}
+
+.status-badge.completed {
+    background-color: #1856d4;
+    color: #ffffff;
+    border: 1px solid #d6d8db;
+}
+
+.status-badge.pending {
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeeba;
+}
+
+.fa-calendar {
+    margin-right: 5px;
+    color: #007bff;
+}
+
+.editable-field {
+    width: auto !important;
+    font-size: 14px !important;
+    font-weight: normal !important;
+    border: 1px solid #d1cfcf !important;
+    background: transparent !important;
+    outline: none !important;
+    padding: 2px !important;
+    border-radius: 5px !important;
+}
+
+.edit-info-btn{
+    width: 19%;
+    background-color: #9bb5f9;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    color: #0c1655;
+}
+
+input#addressText.editable-field {
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important; /* Ensure padding doesn't shrink the width */
+    padding: 4px !important;
+}
+
+
+
+input#projectNameText.editable-field{
+    font-size: 18px !important;
+    font-weight: bold !important;
+}
+
+
+h3{
+    padding-bottom: 12px;
+    padding-left: 5px;
+    font-size: 18px;
+}
+
+.new-task {
+    background-color: #4f68d8;
+    color: #fff;
+    border: none;
+    padding: 6px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+/* Task Table Styling */
+.task-table-wrapper {
+    overflow-x: auto;
+    width: 100%;
+    padding-bottom: 20px;
+}
+
+.task-table table {
+    border-collapse: separate;
+    border-spacing: 0px;
+    font-size: 14px;
+}
+
+.task-table th, .task-table td {
+    padding: 5px 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+    border: 1px solid #b4b4b4;
+    white-space: nowrap;
+}
+
+.task-table th {
+    border-bottom: 2px solid #b4b4b4;
+    padding: 10px;
+}
+
+/* Sticky Columns */
+.task-table th.sticky-column,
+.task-table td.sticky-column {
+    position: sticky;
+    left: 0;
+    background-color: #f4f5f7;
+    z-index: 2;
+    border-right: 1px solid #b4b4b4;
+}
+
+.task-table th.sticky-column + .sticky-column,
+.task-table td.sticky-column + .sticky-column {
+    left: 150px;
+    z-index: 10;
+    border-left: 1px solid #b4b4b4;
+}
+
+/* Ensure first sticky column has left and right borders */
+.task-table th.sticky-column:first-child,
+.task-table td.sticky-column:first-child {
+    border-left: 1px solid #b4b4b4;
+    border-right: 1px solid #b4b4b4;
+}
+
+/* Adjust minimum column widths to align consistently */
+.task-table th,
+.task-table td {
+    min-width: 150px;
+}
+
+.resize-handle {
+    display: none;
+}
+
+
+.owner-placeholder-icon {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    line-height: 30px;
+    background-color: white;
+}
+
+.owner-name {
+    font-weight: bold;
+    color: #003e80;
+}
+
+.owner-icon {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #007bff;
+    color: #fff;
+    text-align: center;
+    line-height: 30px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.owner-container {
+    position: relative;
+    display: inline-table;
+}
+
+.owner-dropdown {
+    display: none;
+    position: absolute;
+    top: 40px;
+    left: 0;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 4px;
+    padding: 5px 0;
+}
+
+.owner-dropdown.visible {
+    display: block;
+}
+
+
+
+.owner-dropdown ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.owner-dropdown li {
+    padding: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+}
+
+.owner-dropdown li:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.contractor-name {
+    margin-left: 5px;
+    color: #000;
+}
+
+.dropdown {
+    display: none;
+}
+.dropdown.active {
+    display: block;
+}
+
+.contractor-icon {
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    background-color: #4CAF50; /* Green background, change to your preferred color */
+    color: white;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 28px;
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.worker-icon {
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    background-color: #4CAF50; /* Green background, change to your preferred color */
+    color: white;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 28px;
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.owner-circle {
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    line-height: 28px;
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.owner-icon {
+    display: flex;
+    align-items: center;
+}
+
+
+.contractor-name {
+    vertical-align: middle;
+}
+
+
+
+.owner-icon {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #007bff;
+    color: #fff;
+    text-align: center;
+    line-height: 30px;
+    font-weight: bold;
+}
+
+
+
+/* Full-cell background color for status and priority columns */
+.task-table td.status,
+.task-table td.priority {
+    padding: 0;
+    background-color: inherit;
+}
+
+.status, .priority {
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 14px 0;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    background-color: gray;
+}
+
+/* Dropdown Styles */
+.status-dropdown, .priority-dropdown{
+    display: none;
+    position: absolute;
+    top: 35px;
+    left: 0;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    width: 120px;
+    color: #2d2d2d;
+    font-weight: normal;
+}
+
+.status-dropdown ul, .priority-dropdown ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.status-dropdown li, .priority-dropdown li {
+    padding: 8px 0 8px 24px;
+    cursor: pointer;
+    font-size: 14px;
+    position: relative;
+}
+
+/* Bullet Style for Each Status Option */
+.status-option::before {
+    content: '●';
+    position: absolute;
+    left: 8px;
+    font-size: 12px;
+}
+
+/* Assign colors to the bullet based on status */
+.status-option.not-started::before {
+    color: gray;
+}
+
+.status-option.working::before {
+    color: #ffa500; /* Orange */
+}
+
+.status-option.done::before {
+    color: #00c853; /* Green */
+}
+
+.status-option.on-hold::before {
+    color: #e7784a; /* Coral */
+}
+
+/* Container for status with colors */
+.status.working {
+    background-color: #ffa500;
+}
+
+.status.done {
+    background-color: #00c853;
+}
+
+.status.on-hold {
+    background-color: #ff4e05;
+}
+
+
+.status-dropdown li:hover, .priority-dropdown li:hover {
+    background-color: #f0f0f0;
+}
+
+/* Container for status and priority */
+.status-container, .priority-container {
+    position: relative;
+}
+
+/* Bullet Style for Each Priority Option */
+.priority-option::before {
+    content: '●';
+    position: absolute;
+    left: 8px;
+    font-size: 12px;
+}
+
+/* Assign colors to the bullet based on priority */
+.priority-option.none::before {
+    color: gray;
+}
+
+.priority-option.low::before {
+    color: #41c5f8;
+}
+
+.priority-option.medium::before {
+    color: #6a5acd;
+}
+
+.priority-option.high::before {
+    color: #4b0082;
+}
+
+/* Container for priority with colors */
+.priority.low {
+    background-color: #41c5f8;
+}
+
+.priority.medium {
+    background-color: #6a5acd;
+}
+
+.priority.high {
+    background-color: #4b0082;
+}
+
+.new-task-highlight {
+    background-color: #d1e7ff; /* Light blue for highlight */
+}
+
+/* Highlighted task id and task name */
+.task-table td.highlight {
+    background-color: #e0f7fa;
+}
+
+
+
+
+/* Style the new task row */
+#new-task-row input[type="text"],
+#new-task-row input[type="date"],
+#new-task-row input[type="number"],
+#new-task-row input[type="file"] {
+    width: 100%;
+    outline: none;
+    box-sizing: border-box;
+    font-size: 14px;
+    border: none;
+}
+
+/* Optional styling for the task name input specifically, to make it prominent */
+#task-name-input {
+    background-color: #f4f5f7;
+}
+
+
+/* Add specific styling for task name input */
+#new-task-row input[type="text"]:focus {
+    border: none;
+}
+
+/* File input style */
+#new-task-row input[type="file"] {
+    font-size: 14px;
+    border: none;
+}
+
+/* Optional styling for the task name input specifically, to make it prominent */
+#new-task-row input[type="text"][placeholder="Task Name"] {
+    background-color: #f4f5f7;
+}
+
+.hidden {
+    display: none;
+}
+
+
+/*tfoot*/
+.budget-total {
+    font-weight: bold;
+    font-size: 16px;
+    text-align: right;
+}
+
+.footer {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px 20px;
+    background-color: #f9f9f9;
+    border-top: 1px solid #ddd;
+}
+
+.footer span {
+    font-size: 14px;
+    color: #555;
+}
+
+/* Ensures the Close Project button is positioned at the bottom right */
+.close-project-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.close-project-btn {
+    padding: 10px 16px;
+    background-color: #8594cd;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    margin: 10px;
+}
+
+.close-project-btn:hover {
+    background-color: #6678bc;
+}
+
+
+.project-modal {
+    display: none; /* Ensure it is hidden by default */
+    position: fixed;
+    z-index: 1050;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+/* Modal Content */
+.project-modal-content {
+    background: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    width: 420px;
+    text-align: center;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.project-details-table {
+    width: 70%;
+    border-collapse: collapse;
+    margin: 15px 0;
+    justify-self: center;
+}
+
+.project-details-table th,
+.project-details-table td {
+    padding: 5px;
+    text-align: left;
+    width: 70%;
+}
+
+.project-details-table th {
+    width: 50%;
+}
+
+
+/* Header Styling */
+.project-modal-content h3 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Paragraph Styling */
+.project-modal-content p {
+    font-size: 15px;
+    color: #555;
+    margin: 8px 0;
+}
+
+/* Modal Actions */
+.project-modal-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* Buttons */
+.project-confirm-btn, .project-cancel-btn {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+/* Confirm Button */
+.project-confirm-btn {
+    background: #28a745; /* Bootstrap Success Color */
+    color: white;
+    font-weight: bold;
+}
+
+.project-confirm-btn:hover {
+    background: #218838;
+    transform: scale(1.05);
+}
+
+/* Cancel Button */
+.project-cancel-btn {
+    background: #dc3545; /* Bootstrap Danger Color */
+    color: white;
+    font-weight: bold;
+}
+
+.project-cancel-btn:hover {
+    background: #c82333;
+    transform: scale(1.05);
+}
+
+/* Fade-In Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* Modal Content */
+.project-modal-content {
+    background: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    width: 420px;
+    text-align: center;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Header */
+.project-modal-content h3 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Project Details */
+.project-modal-content p {
+    font-size: 15px;
+    color: #555;
+    margin: 8px 0;
+}
+
+/* Modal Actions (Buttons) */
+.project-modal-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* Buttons */
+.project-confirm-btn, .project-cancel-btn {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+/* Confirm Button */
+.project-confirm-btn {
+    background: #28a745;
+    color: white;
+    font-weight: bold;
+}
+
+.project-confirm-btn:hover {
+    background: #218838;
+    transform: scale(1.05);
+}
+
+/* Cancel Button */
+.project-cancel-btn {
+    background: #dc3545;
+    color: white;
+    font-weight: bold;
+}
+
+.project-cancel-btn:hover {
+    background: #c82333;
+    transform: scale(1.05);
+}
+
+/* Fade-In Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+.warranty-cell {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.warranty-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: normal;
+    gap: 8px;
+}
+
+.warranty-text, .warranty-details-link {
+    font-size: 14px;
+    color: #333;
+    text-decoration: none;
+}
+
+.warranty-details-link:hover {
+    text-decoration: underline;
+}
+
+
+/* Background overlay with blur effect */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.1); /* Semi-transparent dark background */
+    display: none; /* Hidden by default */
+    z-index: 1000; /* Ensure it appears above the content */
+    backdrop-filter: blur(3px); /* Apply blur effect to the background */
+}
+
+/* Side panel style */
+.warranty-panel {
+    position: fixed;
+    top: 0;
+    right: -400px;  /* Start off-screen */
+    width: 400px;
+    height: 100%;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: -4px 0 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    transition: right 0.3s ease;
+    border-radius: 8px 0 0 8px;
+    font-size: 14px;
+    overflow-y: auto;
+}
+
+/* Panel header */
+.warranty-panel-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Form input styles */
+.warranty-form input, .warranty-form select, .warranty-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+/* Actions buttons */
+.warranty-panel-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.warranty-panel-btn {
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    width: 48%;
+}
+
+.warranty-submit-btn {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.warranty-cancel-btn {
+    background-color: #f44336;
+    color: #fff;
+}
+
+.warranty-panel-btn:hover {
+    opacity: 0.9;
+}
+
+.task-info-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.status-tag {
+    background-color: #4CAF50;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+.budget {
+    font-size: 16px;
+    font-weight: bold;
+    float: right;
+}
+
+hr {
+    margin: 10px 0;
+}
+
+.warranty-info {
+    margin-top: 10px;
+    padding-left: 20px;
+}
+
+.task-details{
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.taskName{
+    font-size: 15px;
+    font-weight: bold;
+}
+
+strong{
+    font-weight: normal;
+}
+
+.task-details div, .warranty-info div {
+    margin-bottom: 5px;
+}
+
+/* Modal Styling */
+.warranty-modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #edf2ff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+    width: 50%;
+    max-width: 750px;
+    z-index: 1001;
+    animation: fadeIn 0.3s ease-in-out;
+
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+/* Modal Content (Ensuring proper scrolling inside modal) */
+.warranty-modal-content {
+    max-height: 100%;
+    overflow-y: auto;
+}
+
+/* Overlay Background */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+}
+
+
+/* Modal Title */
+.modal-title {
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    color: #145698;
+    margin: 0;
+    padding: 10px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+/* Close Button */
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 10px;
+    font-size: 30px;
+    cursor: pointer;
+    color: #444;
+    transition: color 0.2s ease-in-out;
+}
+
+.close-btn:hover {
+    color: #d9534f;
+}
+
+/* Section Styling */
+.document-section {
+    margin-bottom: 15px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 5px solid #007bff;
+    overflow-x: auto;
+}
+
+
+/* Info Table */
+.info-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.info-table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    font-size: 14px;
+    vertical-align: middle;
+    word-break: break-word;
+}
+
+/* Ensure icons do not push content */
+.info-table td:first-child {
+    white-space: nowrap;
+    width: 40%;
+}
+
+/* Icon Styling */
+.icon {
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+/* Status Badge */
+.status-badge {
+    display: inline-block;
+    padding: 5px 10px;
+    font-size: 13px;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.status-active {
+    background: #28a745;
+    color: #fff;
+}
+
+.status-expired {
+    background: #dc3545;
+    color: #fff;
+}
+
+.status-pending {
+    background: #ffc107;
+    color: #333;
+}
+
+input[type="date"] {
+    color: inherit; /* Default color */
+}
+
+input[type="date"].invalid-date {
+    color: red; /* Red color for invalid dates */
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -55%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .warranty-modal {
+        width: 95%;
+        max-width: 500px;
+    }
+
+    .info-table td {
+        display: block;
+        width: 100%;
+        text-align: left;
+    }
+
+    .info-table td:first-child {
+        font-weight: bold;
+    }
+}

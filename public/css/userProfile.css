@@ -1,0 +1,490 @@
+/* 
+    Created on : 19 Nov 2024, 10:11:20 pm
+    Author     : Dell
+*/
+
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #1d1d2c;
+    color: white;
+    padding: 20px;
+    height: 100%;
+    box-sizing: border-box;
+    border-right: 1px solid #ddd;
+}
+
+.main-content {
+    flex: 1;
+    padding: 30px;
+    overflow-y: auto;
+    box-sizing: border-box;
+    margin-left: 300px;
+}
+
+.title{
+    font-size: 28px;
+    font-weight: normal;
+    padding-left: 5px;
+    margin: 15px 0;
+}
+
+/* Profile Card Styles */
+.profile-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.header{
+    margin: 8px 0;
+}
+
+#emailHeader {
+    color: #555;
+    font-size: 14px;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.user_icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-right: 15px;
+    background-color: #ccc;
+    object-fit: cover;
+}
+
+.user-avatar {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    border-radius: 50%;
+    text-transform: uppercase;
+    margin-right: 15px;
+}
+
+
+/* Profile Picture Upload */
+.profile-pic-upload {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.profile-pic-upload input {
+    margin-top: 10px;
+    padding: 5px;
+}
+
+/* Profile Details */
+.profile-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.details-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    align-items: center;
+}
+
+.details-row p {
+    flex: 1;
+    margin: 0;
+    color: #000;
+    line-height: 1.6;
+}
+
+.details-row p strong {
+    font-weight: normal;
+    color: #555;
+    font-size: 13px;
+}
+
+.editButton, .editPhoneButton, .changePasswordButton {
+    margin-left: auto;
+    background-color: #30bd7e;
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.editButton:hover, .editPhoneButton:hover, .changePasswordButton:hover {
+    background-color: #218838;
+}
+
+/* Email Card Styles */
+.email-card h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.email-card p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+
+
+.email-timestamp {
+    margin-left: auto;
+    font-size: 12px;
+    color: #888;
+}
+
+#emailAdd{
+    font-size: 16px;
+}
+
+#phoneNum{
+    font-size: 16px;
+    padding: 5px 15px 5px 0;
+}
+
+.company-logo {
+    width: 80px;
+    height: 80px;
+    border: 1px solid #ddd;
+    object-fit: cover;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+/* Style for the company logo upload form */
+#companyLogoForm {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+/* Style for the file input */
+#companyLogoForm input[type="file"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+#companyLogoForm input[type="file"]:hover {
+    border-color: #30bd7e;
+    background-color: #e9f9f0;
+}
+
+#companyLogoForm input[type="file"]:focus {
+    outline: none;
+    border-color: #30bd7e;
+    box-shadow: 0 0 5px rgba(48, 189, 126, 0.5);
+}
+
+/* Style for the upload button */
+#companyLogoForm button[type="submit"] {
+    background-color: #30bd7e;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#companyLogoForm button[type="submit"]:hover {
+    background-color: #218838;
+}
+
+#companyLogoForm button[type="submit"]:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(48, 189, 126, 0.5);
+}
+
+.role-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.role-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.editRoleButton {
+    background-color: #30bd7e;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.editRoleButton:hover {
+    background-color: #218838;
+}
+
+.hidden {
+    display: none;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    font-weight: bold;
+}
+
+.form-group input[type="text"] {
+    margin-right: 10px;
+}
+
+.form-group input[type="radio"]{
+    margin-right: 10px;
+    width: auto;
+}
+
+.saveRoleButton {
+    background-color: #30bd7e;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.saveRoleButton:hover {
+    background-color: #218838;
+}
+
+.editRoleButton{
+    margin: 15px 0;
+    background-color: #30bd7e;
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.user-role {
+    font-size: 14px;
+    color: #ffffff;
+    font-weight: 500;
+    margin: 5px 15px 0 0;
+    background-color: #66c8e4;
+    padding: 4px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+/* Password Section Styles */
+.password-card {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.password-card h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #30bd7e;
+    padding-bottom: 10px;
+}
+
+.password-card form {
+    display: flex;
+    flex-direction: column;
+}
+
+.password-card label {
+    font-size: 14px;
+    margin: 8px 0 5px;
+    color: #333;
+    font-weight: bold;
+}
+
+.password-card input {
+    width: 95%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: border 0.3s ease-in-out;
+    margin-top: 10px;
+}
+
+.password-card input:focus {
+    border-color: #30bd7e;
+    outline: none;
+    box-shadow: 0 0 5px rgba(48, 189, 126, 0.5);
+}
+
+.password-card button {
+    margin-top: 15px;
+    padding: 12px;
+    background-color: #30bd7e;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.password-card button:hover {
+    background-color: #218838;
+}
+
+
+.custom-select {
+    width: 100px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.custom-select:focus {
+    outline: none;
+    border-color: #30bd7e;
+    box-shadow: 0 0 5px rgba(48, 189, 126, 0.5);
+}
+
+.form-group{
+    padding: 10px 0;
+}
+
+.form-group label{
+    font-weight: bold;
+    margin-right: auto;
+}
+
+.form-group input{
+    font-size: 16px;
+    padding: 5px;
+    border: 1px solid #aeaeae;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 5px;
+}
+
+
+.saveRoleButton{
+    margin-left: auto;
+    background-color: #30bd7e;
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.password-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+#backButton {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#backButton:hover {
+    background-color: #5a6268;
+}
+
+
+.current-password-group input[type="password"] {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: border 0.3s ease-in-out;
+    margin-top: 10px;
+}
+
+.lock-icon {
+    margin-left: 10px;
+    font-size: 18px;
+    color: #555;
+}
+
+.password-note{
+    background-color: #ffe9d6;
+    border: 2px solid #de7628;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 10px;
+}
+
+.password-rules {
+    font-size: 14px;
+    color: #744100;
+    margin-top: 5px;
+    font-weight: bold;
+}
+
+.password-note ul {
+    margin: 5px 0;
+    padding-left: 20px;
+}
+
+.password-note li{
+    font-size: 13px;
+    color: #7b3c0b;
+    margin-top: 5px;
+}
+

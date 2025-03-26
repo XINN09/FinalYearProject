@@ -1,0 +1,69 @@
+
+/* 
+    Created on : 19 Feb 2025, 8:29:08 pm
+    Author     : Dell
+*/
+
+body {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+.container {
+    width: 100%;
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+}
+.header {
+    text-align: center;
+    border-bottom: 4px solid red;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+.header img {
+    max-width: 150px;
+}
+.info-section {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.info-section div {
+    width: 48%;
+}
+.quotation {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+.quotation th, .quotation td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+.quotation th {
+    background-color: red;
+    color: white;
+}
+.total-section {
+    text-align: right;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+.remarks {
+    margin-top: 20px;
+    font-size: 12px;
+}
+.signature {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+}
+.signature div {
+    text-align: center;
+    width: 45%;
+    border-top: 1px solid black;
+    padding-top: 5px;
+}

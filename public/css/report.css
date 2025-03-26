@@ -1,0 +1,805 @@
+
+/* 
+    Created on : 13 Nov 2024, 9:44:29 pm
+    Author     : Dell
+*/
+
+/* General Layout */
+.main-container {
+    display: flex;
+    max-width: 2000px;
+    height: 100vh;
+    margin: 0;
+    overflow-x: auto;
+}
+
+.main-content {
+    width: calc(100% - 250px);
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    transition: margin-left 0.7s ease;
+    overflow-y: auto;
+}
+
+.main-content.sidebar-collapsed {
+    margin-left: 50px;
+}
+
+body {
+    overflow-x: auto;
+}
+
+.navigation {
+    top: 0;
+    left: 250px;
+    right: 0;
+    height: 60px;
+    background-color: var(--lightgray);
+    display: flex;
+    align-items: center;
+    z-index: 1000;
+    transition: left 0.3s ease;
+}
+
+.navigation.sidebar-collapsed {
+    left: 60px;
+}
+
+.content {
+    padding: 20px;
+    max-height: calc(100vh - 60px);
+    background-color: #ffffff;
+    padding-bottom: 100px;
+    overflow-y: auto;
+}
+
+h1 {
+    font-size: 21px;
+    color: #333;
+}
+
+.slider-container {
+    position: relative;
+    width: 300px;
+    height: 60px;
+    margin: 20px auto;
+    border-radius: 50px;
+    box-shadow: 10px 10px 30px rgb(189 209 255);
+    ;
+}
+
+.slider {
+    height: 60px;
+    width: 150px;
+    border-radius: 50px;
+    background-image: linear-gradient(to right, #b4c3e9, #488ee5);
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transition: transform 0.5s ease-in-out;
+}
+
+.btn {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+}
+
+.invoice, .quotation {
+    font-size: 22px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.form-section {
+    padding: 20px 0;
+    position: relative;
+    transition: all 0.5s ease-in-out;
+}
+
+.invoice-form, .quotation-form {
+    display: none;
+}
+
+.invoice-form.active, .quotation-form.active {
+    display: block;
+}
+
+.invoice-form h4{
+    font-size: 17px;
+    margin-bottom: 10px;
+    color: #2c3e50;
+    background-color: #d9eaf5;
+    padding: 3px;
+}
+
+.quotation-form h4{
+    font-size: 17px;
+    margin-bottom: 10px;
+    color: #2c3e50;
+    background-color: #f7b9b3;
+    padding: 3px;
+}
+
+.documents{
+    width: 90%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.report-generation{
+    padding: 20px;
+}
+
+.title{
+    padding: 10px 20px;
+}
+
+/* Additional CSS for form styling and layout */
+.two-column-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.filter-section {
+    margin-bottom: 20px;
+}
+
+
+
+.filter-section label {
+    font-size: 15px;
+    display: block;
+    margin: 7px 0;
+    color: #34495e;
+}
+
+.filter-section input, .filter-section select, .filter-section textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.filter-section textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+.filter-section input:focus, .filter-section select:focus, .filter-section textarea:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.action-buttons .button {
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.task-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.task-table th, .task-table td {
+    border: 1px solid #ddd;
+    padding: 5px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.task-table th {
+    background-color: #f4f4f4;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.custom-checkbox {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 1px solid #333;
+    background: white;
+    margin-left: 5px;
+}
+
+/* Checkbox and Radio Group Styling */
+.checkbox-group, .radio-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box
+}
+
+/* Styled Checkbox Container */
+.checkbox-container, .radio-container {
+    display: flex;
+    align-items: center;
+    font-size: 1em;
+    gap: 10px;
+    position: relative;
+    cursor: pointer;
+}
+
+/* Hide the default checkbox and radio buttons */
+.checkbox-container input[type="checkbox"],
+.radio-container input[type="radio"] {
+    display: none;
+}
+
+/* Custom Checkbox */
+.custom-checkbox,
+.custom-radio {
+    width: 15px;
+    height: 15px;
+    border: 2px solid #34495e;
+    border-radius: 2px;
+    display: inline-block;
+    position: relative;
+    background-color: #fff;
+}
+
+.custom-radio {
+    border-radius: 50%; /* Make it circular for radio */
+}
+
+/* Checked State for Custom Checkbox */
+.checkbox-container input[type="checkbox"]:checked + .custom-checkbox,
+.radio-container input[type="radio"]:checked + .custom-radio {
+    background-color: #7090e4;
+}
+
+/* Checkmark for Checkbox */
+.checkbox-container input[type="checkbox"]:checked + .custom-checkbox::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    width: 2px;
+    height: 6px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+}
+
+/* Disabled Radio Styling */
+.radio-container input[type="radio"]:disabled + .custom-radio {
+    cursor: not-allowed;
+}
+
+/* Action Buttons */
+.action-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.action-buttons .button {
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#previewReport {
+    background-color: #5cb85c;
+}
+
+#previewReport:hover {
+    background-color: #4cae4c;
+}
+
+#saveReport {
+    background-color: #0275d8;
+}
+
+#saveReport:hover {
+    background-color: #025aa5;
+}
+
+#downloadReport {
+    background-color: #f0ad4e;
+}
+
+#downloadReport:hover {
+    background-color: #ec971f;
+}
+
+#resetReport {
+    background-color: #d9534f;
+}
+
+#resetReport:hover {
+    background-color: #c9302c;
+}
+
+#previewReport2 {
+    background-color: #5cb85c;
+}
+
+#previewReport2:hover {
+    background-color: #4cae4c;
+}
+
+#saveReport2 {
+    background-color: #0275d8;
+}
+
+#saveReport2:hover {
+    background-color: #025aa5;
+}
+
+#downloadReport2 {
+    background-color: #f0ad4e;
+}
+
+#downloadReport2:hover {
+    background-color: #ec971f;
+}
+
+#resetReport2 {
+    background-color: #d9534f;
+}
+
+#resetReport2:hover {
+    background-color: #c9302c;
+}
+
+.errorMessage {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .two-column-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .filter-section h4 {
+        font-size: 1.1em;
+    }
+
+    .filter-section label {
+        font-size: 0.9em;
+    }
+
+    .filter-section input, .filter-section select, .filter-section textarea {
+        font-size: 0.9em;
+        padding: 8px;
+    }
+
+    .action-buttons .button {
+        font-size: 0.9em;
+        padding: 8px 16px;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .slider-container {
+        width: 250px;
+    }
+
+    .slider {
+        width: 125px;
+    }
+
+    .invoice, .quotation {
+        font-size: 19px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .slider-container {
+        width: 200px;
+    }
+
+    .slider {
+        width: 100px;
+    }
+
+    .invoice, .quotation {
+        font-size: 16px;
+    }
+}
+
+
+
+/* Instructions */
+.logo-instruction {
+    font-size: 14px;
+    color: #4c75e3;
+    margin-bottom: 12px;
+}
+
+#uploadLogoButtonDiv {
+    margin-top: 10px;
+}
+
+#uploadLogoButton {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+#uploadLogoButton:hover {
+    background: #0056b3;
+}
+
+/* Modal Background */
+.modalLogo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none; /* Ensure the modal is hidden by default */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+/* Modal Content */
+.modal-content-logo {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    width: 500px;
+    position: relative;
+    animation: fadeIn 0.3s ease-in-out;
+    height: auto;
+}
+
+/* Heading */
+.modal-content-logo h4 {
+    margin-bottom: 15px;
+    font-size: 19px;
+}
+
+/* File Input */
+.modal-content-logo input[type="file"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+/* Instructions */
+.upload-instructions {
+    font-size: 15px;
+    color: #777;
+    margin-top: 5px;
+}
+
+/* Logo Preview */
+#logoPreviewContainer {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#logoPreview {
+    max-width: 150px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    padding: 5px;
+    display: none;
+}
+
+/* Buttons */
+.button-group {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn {
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 14px;
+}
+
+#logoFileInput{
+    padding: 12px;
+    font-size: 14px;
+}
+
+.btn-primary {
+    background: #007bff;
+    color: white;
+    border: none;
+    width: 35%;
+}
+
+.btn-primary:hover {
+    background: #0056b3;
+}
+
+.btn-secondary {
+    background: #ccc;
+    color: black;
+    border: none;
+    width: 35%;
+}
+
+.btn-secondary:hover {
+    background: #999;
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.no-tasks-message {
+    text-align: center;
+    font-size: 16px;
+    color: #ff4d4d;
+    background-color: #ffe6e6;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 20px auto;
+    width: 50%;
+    border: 1px solid #ff9999;
+}
+
+#errorMessageContainer{
+    margin-top: 10px;
+    color: red;
+    font-size: 14px;
+    text-align: center;
+}
+
+.input-with-lock {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.lock-icon {
+    margin-left: 10px;
+    font-size: 16px;
+    color: #888;
+    position: absolute;
+    right: 5px;
+}
+
+.project-top{
+    padding: 0px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    gap: 10px;
+}
+
+.project-top:hover{
+    background-color: #efefef;
+    border-radius: 10px;
+}
+
+.project-top.active{
+    background-color: #d0ebff;
+    border-radius: 10px;
+}
+
+.project-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+}
+
+.project-header h1 {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 24px;
+}
+
+.toggle-info-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.project-info-panel {
+    position: absolute;
+    top: 135px;
+    left: 280px;
+    width: 420px;
+    background: white;
+    border: 1px solid #ddd;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    border-radius: 10px;
+    z-index: 100;
+    font-size: 14px;
+}
+
+.project-info-panel h2 {
+    margin: 0 0 10px 0;
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+}
+
+.project-description, .project-address {
+    margin-bottom: 10px;
+}
+
+.project-description p, .project-address p {
+    margin: 0;
+    line-height: 1.4;
+}
+
+.project-info-table {
+    width: 100%;
+    font-size: 14px;
+    border-collapse: collapse;
+}
+
+.project-info-table td {
+    padding: 8px 0px;
+    vertical-align: middle;
+}
+
+.user-cell {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.user-avatar {
+    width: 27px;
+    height: 27px;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Status Badge Styles */
+.status-badge {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 12px;
+    text-transform: uppercase;
+    display: inline-block;
+}
+
+.status-badge.active {
+    background-color: #0cac36;
+    color: #ffffff;
+    border: 1px solid #09aa2e;
+
+}
+
+.status-badge.completed {
+    background-color: #1856d4;
+    color: #ffffff;
+    border: 1px solid #d6d8db;
+}
+
+.status-badge.pending {
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeeba;
+}
+
+.fa-calendar {
+    margin-right: 5px;
+    color: #007bff;
+}
+
+.editable-field {
+    width: auto !important;
+    font-size: 14px !important;
+    font-weight: normal !important;
+    border: 1px solid #d1cfcf !important;
+    background: transparent !important;
+    outline: none !important;
+    padding: 2px !important;
+    border-radius: 5px !important;
+}
+
+.edit-info-btn{
+    width: 19%;
+    background-color: #9bb5f9;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    color: #0c1655;
+}
+
+input#addressText.editable-field {
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important; /* Ensure padding doesn't shrink the width */
+    padding: 4px !important;
+}
+
+
+
+input#projectNameText.editable-field{
+    font-size: 18px !important;
+    font-weight: bold !important;
+}
+
+.spinner {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #3498db;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

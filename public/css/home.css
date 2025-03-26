@@ -1,0 +1,529 @@
+/* 
+    Created on : 5 Nov 2024, 10:24:37 pm
+    Author     : Dell
+*/
+
+/* public/css/dashboard.css */
+
+/* General Layout */
+.main-container {
+    display: flex;
+    max-width: 2000px;
+    height: 100vh;
+    margin: 0;
+    overflow-x: auto;
+}
+/* Adjust Main Content */
+.main-content {
+    width: calc(100% - 250px);
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    transition: margin-left 0.3s ease;
+    overflow-y: auto;
+    background-color: #ffffff;
+}
+
+/* Adjust content margin when sidebar is collapsed */
+.main-content.sidebar-collapsed {
+    margin-left: 60px;
+}
+
+.navigation {
+    top: 0;
+    left: 250px; /* Align to the right of the sidebar */
+    right: 0;
+    height: 60px;
+    background-color: var(--lightgray);
+    display: flex;
+    align-items: center;
+    z-index: 1000;
+    transition: left 0.3s ease;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1e1e2f;
+    color: #6e6e6e;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    margin: 5%;
+    padding: 20px;
+    margin-top: 0;
+}
+
+header {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+header h2 {
+    font-size: 24px;
+    margin-bottom: 5px;
+    color: #3B3C50;
+}
+
+.role-badge {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 4px 8px;
+    margin-left: 8px;
+    border-radius: 12px;
+    color: white;
+}
+
+.contractor {
+    background-color: #007bff; /* Blue */
+}
+
+.worker {
+    background-color: #ffc107; /* Green */
+}
+
+.homeowner {
+    background-color: #28a745;/* Yellow */
+}
+
+.default {
+    background-color: #6c757d; /* Grey */
+}
+
+header p {
+    color: #4A5C6A;
+}
+
+/* Default Stats Section */
+.stats-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    gap: 10px;
+}
+
+/* Each stat-box will dynamically adjust its width */
+.stat-box {
+    flex-grow: 1;
+    width: 15%;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    color: #000000;
+    font-size: 0.9em;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Default Role (Contractors or Other Users) */
+.default-theme .stat-box:nth-child(1) {
+    box-shadow: 3px 5px 6px 1px #cee0f6;
+    border: 2px solid #cee0f6;
+}
+.default-theme .stat-box:nth-child(2) {
+    box-shadow: 3px 5px 6px 1px #b5c5e9;
+    border: 2px solid #b4c0db;
+}
+.default-theme .stat-box:nth-child(3) {
+    box-shadow: 3px 5px 6px 1px #ddc8e1;
+    border: 2px solid #ddc8e1;
+}
+.default-theme .stat-box:nth-child(4) {
+    box-shadow: 3px 5px 6px 1px #ccb7d7;
+    border: 2px solid #ccb7d7;
+}
+.default-theme .stat-box:nth-child(5) {
+    box-shadow: 3px 5px 6px 1px #eec6c7;
+    border: 2px solid #eec6c7;
+}
+.default-theme .stat-box:nth-child(6) {
+    box-shadow: 3px 5px 6px 1px #e69da6;
+    border: 2px solid #e69da6;
+}
+/* Homeowner Theme (Soft Green to Blue Gradient) */
+.homeowner-theme .stat-box:nth-child(1) {
+    border: 2px solid #b3e5c5; /* Soft green */
+    box-shadow: 3px 5px 6px 1px rgba(163, 242, 207, 0.3);
+}
+.homeowner-theme .stat-box:nth-child(2) {
+    border: 2px solid #96ddc0; /* Light green */
+    box-shadow: 3px 5px 6px 1px rgba(150, 221, 192, 0.3);
+}
+.homeowner-theme .stat-box:nth-child(3) {
+    border: 2px solid #6cc3e0; /* Soft blue */
+    box-shadow: 3px 5px 6px 1px rgba(108, 195, 224, 0.3);
+}
+.homeowner-theme .stat-box:nth-child(4) {
+    border: 2px solid #42b0dc; /* Sky blue */
+    box-shadow: 3px 5px 6px 1px rgba(66, 176, 220, 0.3);
+}
+
+/* Worker Theme (Soft Yellow to Orange Gradient) */
+.worker-theme .stat-box:nth-child(1) {
+    border: 2px solid #ffe8a3; /* Soft yellow */
+    box-shadow: 3px 5px 6px 1px rgba(255, 232, 163, 0.3);
+}
+.worker-theme .stat-box:nth-child(2) {
+    border: 2px solid #ffd678; /* Light yellow-orange */
+    box-shadow: 3px 5px 6px 1px rgba(255, 214, 120, 0.3);
+}
+.worker-theme .stat-box:nth-child(3) {
+    border: 2px solid #ffb961; /* Warm orange */
+    box-shadow: 3px 5px 6px 1px rgba(255, 185, 97, 0.3);
+}
+.worker-theme .stat-box:nth-child(4) {
+    border: 2px solid #ff9a50; /* Soft burnt orange */
+    box-shadow: 3px 5px 6px 1px rgba(255, 154, 80, 0.3);
+}
+
+/* Styling for the text inside */
+.stat-box span {
+    display: block;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.stat-box p {
+    font-size: 14px;
+}
+
+
+
+.stat-box1,
+.stat-box2,
+.stat-box3,
+.stat-box4,
+.stat-box5,
+.stat-box6{
+    width: 15%;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    color: #000000;
+    overflow-wrap: break-word;
+    font-size: 0.9em;
+}
+
+.stat-box1{
+    box-shadow: 3px 5px 6px 1px #cee0f6;
+    border: 2px solid #cee0f6;
+}
+
+
+.stat-box2{
+    box-shadow: 3px 5px 6px 1px #b5c5e9;
+    border: 2px solid #b4c0db;
+}
+
+.stat-box3{
+    box-shadow: 3px 5px 6px 1px #ddc8e1;
+    border: 2px solid #ddc8e1;
+}
+
+.stat-box4{
+    box-shadow: 3px 5px 6px 1px #ccb7d7;
+    border: 2px solid #ccb7d7;
+}
+
+.stat-box5{
+    box-shadow: 3px 5px 6px 1px #eec6c7;
+    border: 2px solid #eec6c7;
+}
+
+.stat-box6{
+    box-shadow: 3px 5px 6px 1px #e69da6;
+    border: 2px solid #e69da6;
+}
+
+.stat-box1 span,
+.stat-box2 span,
+.stat-box3 span,
+.stat-box4 span,
+.stat-box5 span,
+.stat-box6 span{
+    display: block;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.stat-box1 p,
+.stat-box2 p,
+.stat-box3 p,
+.stat-box4 p,
+.stat-box5 p,
+.stat-box6 p{
+    font-size: 14px;
+}
+
+.stat-box1 a,
+.stat-box2 a,
+.stat-box3 a,
+.stat-box4 a,
+.stat-box5 a,
+.stat-box6 a{
+    text-decoration: none;
+    color: #000000;
+    font-size: 0.9em;
+}
+
+.recent-projects {
+    background-color: #ffffff;
+    margin-bottom: 20px;
+}
+
+
+.recent-projects a{
+    background-color: #ffffff;
+    margin-bottom: 20px;
+    text-decoration: none;
+}
+
+.recent-projects h3 {
+    font-size: 18px;
+    color: #202021;
+    margin-bottom: 10px;
+}
+
+.recent-projects ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.recent-projects li {
+    font-size: 14px;
+    color: #3a3a4d;
+    margin-bottom: 8px;
+    border: 1px solid #ffd4ab;
+    padding: 10px;
+    box-shadow: 2px 1px 3px #fcdec2;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.recent-projects li small {
+    display: block;
+    color: #666;
+    font-size: 12px;
+    margin-top: 2px;
+    font-weight:normal;
+}
+
+.recent-projects li span {
+    color: #3a3a4d;
+}
+
+
+.tasks-issues-section {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+}
+
+.tasks-box, .issues-box {
+    background-color: #ffffff;
+    flex: 1;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 2px 5px 10px rgba(0,0,0,0.1);
+    border: 1px solid #dfdfdf;
+    width: 50%;
+}
+
+.tasks-box h3, .issues-box h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #202021;
+}
+
+/* Use a flex container with fixed widths for each column */
+.task-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Set each column to a fixed width or flex-basis so they remain consistent */
+.task-name, .task-project, .task-date {
+    flex: 0 0 33%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.task-name {
+    text-align: left;
+}
+
+.task-project {
+    text-align: center;
+}
+
+.task-date {
+    text-align: right;
+}
+
+.task-item a,
+.task-item p,
+.task-item span {
+    font-size: 14px;
+    color: #000000;
+    text-decoration: none;
+}
+
+.view-more {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #5191f7;
+    text-decoration: none;
+}
+
+
+
+.issues-box .no-issues img {
+    width: 60px;
+    margin-bottom: 10px;
+}
+
+.tasks-box p,.issues-box .no-issues p {
+    font-size: 14px;
+    color: #817d7d;
+    text-align: center;
+}
+
+.upcoming-tasks {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 2px 5px 10px rgba(0,0,0,0.1);
+    border: 1px solid #dfdfdf;
+    width: 50%;
+}
+
+.task-card {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background: #f7f7f7;
+}
+
+.task-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+}
+
+.task-remarks {
+    font-size: 14px;
+    color: #666;
+    margin-top: 5px;
+}
+
+.task-title{
+    color: #393939;
+    font-weight: bold;
+}
+
+.task-footer {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+}
+
+.task-avatar {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #007bff;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    margin-right: 5px;
+}
+
+.document-item {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    margin-bottom: 8px;
+    border-radius: 6px;
+    background-color: white; /* Ensure the entire document-item is white */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional shadow for a cleaner look */
+    border: 1px solid #ddd; /* Optional: Light border for clarity */
+}
+
+.document-icon {
+    padding: 8px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 56px;
+    min-height: 56px;
+}
+
+.document-icon img {
+    width: 40px;
+    height: 40px;
+}
+
+.document-info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 12px;
+}
+
+.document-name {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
+}
+
+.document-meta {
+    font-size: 12px;
+    color: #666;
+    display: flex;
+    gap: 10px;
+    margin-top: 4px;
+}
+.worker-stats-section {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 50%;
+}
+
+.worker-stats-section .stat-row {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.worker-stats-section .stat-cell {
+    padding: 10px 15px;
+    text-align: center;
+    font-size: 16px;
+    border: 1px solid #dfdfdf;
+    background-color: #ffffff;
+    border-radius: 8px;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    gap: 5px; 
+    box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.worker-stats-section .stat-cell i {
+    font-size: 24px;
+    color: #069337;
+}
+

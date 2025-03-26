@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/xampp/htdocs/renovationsystem/app/Models/User.php</file>
+            <file>file:/C:/xampp/htdocs/renovationsystem/routes/web.php</file>
+            <file>file:/C:/xampp/htdocs/renovationsystem/app/Models/Worker.php</file>
+            <file>file:/C:/xampp/htdocs/renovationsystem/database/migrations/2025_01_13_131939_create_tasks_table.php</file>
+            <file>file:/C:/xampp/htdocs/renovationsystem/resources/views/projectHistory.blade.php</file>
+            <file>file:/C:/xampp/htdocs/renovationsystem/app/Models/Task.php</file>
+            <file>file:/C:/xampp/htdocs/renovationsystem/resources/views/forgotPwd.blade.php</file>
+            <file>file:/C:/xampp/htdocs/renovationsystem/storage/logs/laravel.log</file>
+            <file>file:/C:/xampp/htdocs/renovationsystem/public/css/forgotPwd.css</file>
+            <file>file:/C:/xampp/htdocs/renovationsystem/app/Models/Assignment.php</file>
+            <file>file:/C:/xampp/htdocs/renovationsystem/public/css/sidebar.css</file>
+            <file>file:/C:/xampp/htdocs/renovationsystem/.env</file>
+            <file>file:/C:/xampp/htdocs/renovationsystem/app/Http/Controllers/UserManagementController.php</file>
+            <file>file:/C:/xampp/htdocs/renovationsystem/app/Http/Controllers/DashboardController.php</file>
+            <file>file:/C:/xampp/htdocs/renovationsystem/resources/views/work.blade.php</file>
+        </group>
+    </open-files>
+</project-private>
